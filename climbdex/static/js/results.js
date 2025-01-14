@@ -355,16 +355,12 @@ async function fetchGenerateResults() {
             "board_name": board_name,
             "product_size": size_id,
             "layout_id": layout_id,
-            "reach": 48,
-            "power": 1.5,
-            "finger_strength": 1.6,
-            "core_strength": 2,
-            "grade": "6A",
-            "weights": {
-                "power": 0.7,
-                "finger_strength": 0.15,
-                "footholds": 0.15
-            }
+            "reach": reach,
+            "power": power,
+            "finger_strength": finger_strength,
+            "core_strength": core_strength,
+            "grade": grade,
+            "weights": weights,
         })
     });
     const results = await response.json();

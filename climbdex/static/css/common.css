@@ -5,3 +5,26 @@
 .show-alert {
   display: inherit;
 }
+
+.input-group-text .tooltiptext {
+  visibility: hidden;
+  max-width: 50vw;
+  background-color: black;
+  color: #fff;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.input-group-text:hover .tooltiptext {
+  visibility: visible;
+}
+
+form {
+  margin-bottom: 2rem;
+}

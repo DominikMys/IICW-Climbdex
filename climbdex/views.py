@@ -57,7 +57,7 @@ def results():
         placement_positions=placement_positions,
         grades=climbdex.db.get_data(board_name, "grades"),
         led_colors=get_led_colors(board_name, layout_id),
-        layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name,layout_id),
+        layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name, layout_id),
         login_cookie=login_cookie,
         generate=False,
         board_name=board_name,
@@ -111,6 +111,7 @@ def create():
         **get_draw_board_kwargs(board_name, layout_id, size_id, set_ids),
     )
 
+
 @blueprint.route("/generate")
 def generate():
     board_name = flask.request.args.get("board")
@@ -121,6 +122,20 @@ def generate():
     ticked_climbs = get_ticked_climbs(board_name, login_cookie) if login_cookie else []
     attempted_climbs = get_bids(board_name, login_cookie) if login_cookie else []
     placement_positions = get_placement_positions(board_name, layout_id, size_id)
+
+    reach = flask.request.args.get("reach")
+    power = flask.request.args.get("power")
+    finger_strength = flask.request.args.get("fingerStrength")
+    core_strength = flask.request.args.get("coreStrength")
+    grade = flask.request.args.get("grade")
+    weight_power = flask.request.args.get("weightPower")
+    weight_fingers = flask.request.args.get("weightFingers")
+    weight_footholds = flask.request.args.get("weightFootholds")
+    weights = {
+        "power": weight_power,
+        "finger_strength": weight_fingers,
+        "footholds": weight_footholds
+    }
     return flask.render_template(
         "results.html.j2",
         app_url=boardlib.api.aurora.WEB_HOSTS[board_name],
@@ -130,12 +145,18 @@ def generate():
         placement_positions=placement_positions,
         grades=climbdex.db.get_data(board_name, "grades"),
         led_colors=get_led_colors(board_name, layout_id),
-        layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name,layout_id),
+        layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name, layout_id),
         login_cookie=login_cookie,
         generate=True,
         board_name=board_name,
         layout_id=layout_id,
         size_id=size_id,
+        reach=reach,
+        power=power,
+        finger_strength=finger_strength,
+        core_strength=core_strength,
+        grade=grade,
+        weights=weights,
         **get_draw_board_kwargs(
             board_name,
             layout_id,
@@ -143,6 +164,7 @@ def generate():
             set_ids,
         ),
     )
+
 
 def get_draw_board_kwargs(board_name, layout_id, size_id, set_ids):
     images_to_holds = {}

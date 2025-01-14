@@ -340,6 +340,12 @@
       const board_name = {{ board_name | tojson}};
       const layout_id = {{ layout_id | tojson}};
       const size_id = {{ size_id | tojson}};
+      const reach = {{ reach | tojson}};
+      const power = {{ power | tojson}};
+      const finger_strength = {{ finger_strength | tojson}};
+      const core_strength = {{ core_strength | tojson}};
+      const grade = {{ grade | tojson}};
+      const weights = {{ weights | tojson}};
       drawBoard('svg-climb', {{ images_to_holds | tojson}}, {{ edge_left }}, {{ edge_right }}, {{ edge_bottom }}, {{ edge_top }});
     </script>
     <script src="{{url_for('static', filename='js/results.js')}}"></script>
