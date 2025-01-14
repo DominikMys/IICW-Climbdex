@@ -336,6 +336,10 @@
       const tickedClimbs = {{ ticked_climbs | tojson}};
       const placementPositions = {{ placement_positions | tojson}};
       const gradeMapping = {{ grades | tojson }};
+      const generate = {{ generate | tojson}};
+      const board_name = {{ board_name | tojson}};
+      const layout_id = {{ layout_id | tojson}};
+      const size_id = {{ size_id | tojson}};
       drawBoard('svg-climb', {{ images_to_holds | tojson}}, {{ edge_left }}, {{ edge_right }}, {{ edge_bottom }}, {{ edge_top }});
     </script>
     <script src="{{url_for('static', filename='js/results.js')}}"></script>

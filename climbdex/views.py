@@ -59,6 +59,10 @@ def results():
         led_colors=get_led_colors(board_name, layout_id),
         layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name,layout_id),
         login_cookie=login_cookie,
+        generate=False,
+        board_name=board_name,
+        layout_id=layout_id,
+        size_id=size_id,
         **get_draw_board_kwargs(
             board_name,
             layout_id,
@@ -107,6 +111,38 @@ def create():
         **get_draw_board_kwargs(board_name, layout_id, size_id, set_ids),
     )
 
+@blueprint.route("/generate")
+def generate():
+    board_name = flask.request.args.get("board")
+    layout_id = flask.request.args.get("layout")
+    size_id = flask.request.args.get("size")
+    set_ids = flask.request.args.getlist("set")
+    login_cookie = flask.request.cookies.get(f"{board_name}_login")
+    ticked_climbs = get_ticked_climbs(board_name, login_cookie) if login_cookie else []
+    attempted_climbs = get_bids(board_name, login_cookie) if login_cookie else []
+    placement_positions = get_placement_positions(board_name, layout_id, size_id)
+    return flask.render_template(
+        "results.html.j2",
+        app_url=boardlib.api.aurora.WEB_HOSTS[board_name],
+        colors=climbdex.db.get_data(board_name, "colors", {"layout_id": layout_id}),
+        ticked_climbs=ticked_climbs,
+        attempted_climbs=attempted_climbs,
+        placement_positions=placement_positions,
+        grades=climbdex.db.get_data(board_name, "grades"),
+        led_colors=get_led_colors(board_name, layout_id),
+        layout_is_mirrored=climbdex.db.layout_is_mirrored(board_name,layout_id),
+        login_cookie=login_cookie,
+        generate=True,
+        board_name=board_name,
+        layout_id=layout_id,
+        size_id=size_id,
+        **get_draw_board_kwargs(
+            board_name,
+            layout_id,
+            size_id,
+            set_ids,
+        ),
+    )
 
 def get_draw_board_kwargs(board_name, layout_id, size_id, set_ids):
     images_to_holds = {}
