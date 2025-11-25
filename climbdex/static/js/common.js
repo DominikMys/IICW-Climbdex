@@ -20,9 +20,12 @@ function drawBoard(
       "xlink:href",
       imageUrl
     );
+    imageElement.setAttribute("referrerpolicy", "no-referrer");
+
     svgElement.appendChild(imageElement);
 
     const image = new Image();
+    image.referrerPolicy = "no-referrer"; // widely supported on HTMLImageElement
     image.onload = function () {
       svgElement.setAttribute("viewBox", `0 0 ${image.width} ${image.height}`);
       let xSpacing = image.width / (edgeRight - edgeLeft);
