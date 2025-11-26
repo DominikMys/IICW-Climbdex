@@ -48,6 +48,10 @@
     .star-rating label:hover~label {
       color: #ffd700;
     }
+
+    #loading {
+        display: none;
+    }
   </style>
 </head>
 
@@ -60,12 +64,13 @@
     <div class="row justify-content-md-center">
       <div class="col-md-5 card p-3 g-2 vh-100">
         <h4 id="header-results-count"></h4>
-        <p class="mb-3"><small><a id="anchor-back">Back to filter selection</a></small></p>
+        <p class="mb-3"><small><a id="anchor-back">Back to generation</a></small></p>
         <div class="btn-group mb-3" role="group" aria-label="Export Button Bar">
           <button type="button" class="btn btn-outline-primary" id="export-list-csv-button" onclick="exportResultsList('csv')">Export List as CSV</button>
           <button type="button" class="btn btn-outline-primary" id="export-list-json-button"  onclick="exportResultsList('json')">Export List as JSON</button>
         </div>
         <div id="div-results-list" class="list-group"></div>
+          <div id="loading">Loading...</div>
       </div>
       <div class="col-md-5 card p-3 g-2 vh-100" id="div-climb">
         <div class="row g-0">

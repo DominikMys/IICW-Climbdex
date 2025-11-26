@@ -345,7 +345,9 @@ async function fetchResults(pageNumber, pageSize) {
 }
 
 async function fetchGenerateResults() {
-    const response = await fetch("http://localhost:5000/generate", {
+    const loading = document.getElementById("loading");
+    loading.style.display = "block";
+    const response = await fetch("http://127.0.0.1:5000/generate", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -363,6 +365,7 @@ async function fetchGenerateResults() {
             "weights": weights,
         })
     });
+    loading.style.display = "none";
     const results = await response.json();
 
     if (results["error"] == true) {
