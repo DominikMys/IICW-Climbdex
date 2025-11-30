@@ -1,6 +1,6 @@
 {
-  "name": "Climbdex",
-  "description": "Search engine for training board climbs",
+  "name": "ClimbGen",
+  "description": "Climb generation tool for training",
   "icons": [
     {
       "src": "media/icon.svg",
@@ -16,20 +16,6 @@
       "src": "media/icon192.png",
       "type": "image/png",
       "sizes": "192x192"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "media/ss_wide.png",
-      "type": "image/png",
-      "sizes": "2204x1476",
-      "form_factor": "wide"
-    },
-    {
-      "src": "media/ss_narrow.png",
-      "type": "image/png",
-      "sizes": "1075x1855",
-      "form_factor": "narrow"
     }
   ],
   "prefer_related_applications": false,
