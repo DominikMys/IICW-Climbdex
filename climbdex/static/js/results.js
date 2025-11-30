@@ -347,7 +347,7 @@ async function fetchResults(pageNumber, pageSize) {
 async function fetchGenerateResults() {
     const loading = document.getElementById("loading");
     loading.style.display = "block";
-    const response = await fetch("http://127.0.0.1:5000/generate", {
+    const response = await fetch("/api/generate", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
