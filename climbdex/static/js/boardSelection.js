@@ -92,7 +92,6 @@ function updateSetsInput() {
       isOneSetEnabled = true;
     }
   }
-  document.getElementById("button-next").disabled = !isOneSetEnabled;
 }
 
 function handleBoardSelection() {
