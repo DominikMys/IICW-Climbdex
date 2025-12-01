@@ -52,6 +52,41 @@
     #loading {
         display: none;
     }
+
+    .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid forestgreen;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        position: relative;
+        animation: pulse 1s linear infinite;
+    }
+    .loader:after {
+        content: '';
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border: 5px solid forestgreen;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        animation: scaleUp 1s linear infinite;
+    }
+
+    @keyframes scaleUp {
+        0% { transform: translate(-50%, -50%) scale(0) }
+        60% , 100% { transform: translate(-50%, -50%)  scale(1)}
+    }
+    @keyframes pulse {
+        0% , 60% , 100%{ transform:  scale(1) }
+        80% { transform:  scale(1.2)}
+    }
+
   </style>
 </head>
 
@@ -66,7 +101,7 @@
         <h4 id="header-results-count"></h4>
         <p class="mb-3"><small><a id="anchor-back">Back to generation</a></small></p>
         <div id="div-results-list" class="list-group"></div>
-          <div id="loading">Loading...</div>
+          <div class="d-flex justify-content-center align-items-center gap-4" id="loading"><span class="loader"></span><span>Generating...</span></div>
       </div>
       <div class="col-md-5 card p-3 g-2 vh-100" id="div-climb">
         <div class="row g-0">
