@@ -95,32 +95,9 @@ function updateSetsInput() {
   document.getElementById("button-next").disabled = !isOneSetEnabled;
 }
 
-function populateLoginForm(boardName) {
-  const capitalizedBoardName =
-    boardName.charAt(0).toUpperCase() + boardName.slice(1);
-
-  const loginButton = document.getElementById("button-login");
-  loginButton.disabled = false;
-  loginButton.textContent = `(Optional) Login to ${capitalizedBoardName}`;
-  const loginText = document.cookie.includes(`${boardName}_login`)
-    ? "You're logged in! Log in again to switch users or refresh your token."
-    : "Log in to allow Climbdex to fetch your ticklist.";
-  document.getElementById("div-login-text").textContent = loginText;
-  document.getElementById(
-    "header-modal-title"
-  ).textContent = `${capitalizedBoardName} Board Login`;
-  document.getElementById(
-    "label-username"
-  ).textContent = `${capitalizedBoardName} Board Username`;
-  document.getElementById(
-    "label-password"
-  ).textContent = `${capitalizedBoardName} Board Password`;
-}
-
 function handleBoardSelection() {
   const boardName = document.getElementById("select-board").value;
   populateLayouts(boardName);
-  populateLoginForm(boardName);
 }
 
 const boardSelect = document.getElementById("select-board");
@@ -156,17 +133,11 @@ loginForm.addEventListener("submit", function (event) {
           json
         )}; SameSite=Strict; Secure;`;
         modal.hide();
-        populateLoginForm(boardName);
         location.reload();
       }
     });
   });
   event.preventDefault();
-});
-
-const loginButton = document.getElementById("button-login");
-loginButton.addEventListener("click", function () {
-  modal.show();
 });
 
 const closeButton = document.getElementById("button-close");

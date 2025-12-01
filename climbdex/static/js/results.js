@@ -346,7 +346,7 @@ async function fetchResults(pageNumber, pageSize) {
 
 async function fetchGenerateResults() {
     const loading = document.getElementById("loading");
-    loading.style.display = "block";
+    loading.style.visibility = "visible";
     const response = await fetch("/backend/generate", {
         method: 'POST',
         headers: {
@@ -365,7 +365,7 @@ async function fetchGenerateResults() {
             "weights": weights,
         })
     });
-    loading.style.display = "none";
+    loading.style.visibility = "hidden";
     const results = await response.json();
 
     if (results["error"] == true) {
