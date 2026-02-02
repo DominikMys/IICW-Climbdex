@@ -357,7 +357,7 @@ async function fetchGenerateResults() {
             "board_name": board_name,
             "product_size": size_id,
             "layout_id": layout_id,
-            "reach": reach / 20.32 * 8,
+            "reach": reach / 20.32 * 8 * (1 - 0.7 * angle / 70),
             "power": power,
             "finger_strength": finger_strength,
             "core_strength": core_strength,

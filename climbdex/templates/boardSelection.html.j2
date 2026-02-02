@@ -19,19 +19,11 @@
     {% include 'alert.html.j2' %}
     <div class="row justify-content-md-center">
         <div class="col-md-5">
-            <form class="card p-3 bg-light" action="/filter" id="form-board">
+            <form class="card p-3 bg-light" action="/generate" id="form-board">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Board</span>
                     <select class="form-select" id="select-board" name="board">
-                        <option value="decoy">Decoy</option>
-                        <option value="grasshopper">
-                            Grasshopper
-                        </option>
                         <option value="kilter" selected>Kilter</option>
-                        <option value="tension">Tension</option>
-                        <option value="touchstone">
-                            Touchstone
-                        </option>
                     </select>
                 </div>
                 <div class="input-group mb-3">
@@ -44,11 +36,18 @@
                     <select class="form-select" id="select-size" name="size"></select>
                 </div>
                 <div class="input-group mb-3">
+                    <span class="input-group-text">Angle
+                        <span class="tooltiptext">The angle that your board is currently at</span>
+                    </span>
+                    <input type="number" class="form-control" id="input-angle" value="40" min="0" max="70"
+                           step="5" name="angle"/>
+                </div>
+                <div class="input-group mb-3">
                     <span class="input-group-text">Reach
                         <span class="tooltiptext">Your wingspan (if you don't know it then your height) in cm</span>
                     </span>
                     <input type="number" class="form-control" id="input-reach" min="100" max="200"
-                           value="175" step="5" name="reach"/>
+                           value="175" name="reach"/>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Power
@@ -181,9 +180,6 @@
             </form>
         </div>
     </div>
-    <div class="row justify-content-md-center mt-3">
-        {% include 'footer.html.j2' %}
-    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="div-modal" tabindex="-1">
@@ -204,14 +200,6 @@
                         <label for="input-password" class="form-label" id="label-password"></label>
                         <input type="password" class="form-control" id="input-password" autocomplete="on" minlength="1"
                                required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="input-group d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                    <div class="input-group">
-                        <p class="text-end text-danger" id="paragraph-login-error"></p>
                     </div>
                 </div>
             </form>
