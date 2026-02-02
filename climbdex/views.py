@@ -134,6 +134,7 @@ def generate():
     attempted_climbs = get_bids(board_name, login_cookie) if login_cookie else []
     placement_positions = get_placement_positions(board_name, layout_id, size_id)
 
+    angle = flask.request.args.get("angle")
     reach = flask.request.args.get("reach")
     power = flask.request.args.get("power")
     finger_strength = flask.request.args.get("fingerStrength")
@@ -162,6 +163,7 @@ def generate():
         board_name=board_name,
         layout_id=layout_id,
         size_id=size_id,
+        angle=angle,
         reach=reach,
         power=power,
         finger_strength=finger_strength,
