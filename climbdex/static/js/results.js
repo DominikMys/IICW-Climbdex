@@ -362,7 +362,7 @@ async function fetchGenerateResults() {
             "finger_strength": finger_strength,
             "core_strength": core_strength,
             "grade": grade,
-            "weights": weights,
+            "weights": normalizeWeights(weights),
         })
     });
     loading.style.visibility = "hidden";
@@ -374,6 +374,18 @@ async function fetchGenerateResults() {
     } else {
         return results;
     }
+}
+
+function normalizeWeights(weights, eps = 1e-12) {
+    const keys = Object.keys(weights);
+    const total = keys.reduce((s, k) => s + Number(weights[k] ?? 0), 0);
+
+    if (Math.abs(total) < eps) {
+        const v = 1 / keys.length;
+        return Object.fromEntries(keys.map(k => [k, v]));
+    }
+
+    return Object.fromEntries(keys.map(k => [k, Number(weights[k]) / total]));
 }
 
 function clickClimbButton(index, pageSize, resultsCount) {
